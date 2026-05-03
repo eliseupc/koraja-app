@@ -3,23 +3,76 @@
 {% block title %}Contato | Mapa de Corrida{% endblock %}
 
 {% block content %}
-  <section class="page-section page-card">
-    <h1>Fale comigo</h1>
-    <p>Se quiser sugestões de regiões para correr, ideias de rotas ou quiser personalizar o site, entre em contato.</p>
-    <div class="contact-grid">
-      <div>
-        <h2>Contato</h2>
-        <p>Email: <a href="mailto:contato@seusite.com">contato@seusite.com</a></p>
-        <p>WhatsApp: +55 11 90000-0000</p>
+  <!-- Header de Impacto com Tipografia Premium -->
+  <header class="contact-header" style="text-align: center; padding: 60px 0 40px;">
+    <span class="eyebrow-premium">Connect & Collaborate</span>
+    <h1 class="title-premium">Fale <span class="text-gradient">Conosco</span></h1>
+    <p style="color: var(--text-dim); max-width: 600px; margin: 20px auto; font-size: 1.1rem; line-height: 1.6;">
+        Estamos aqui para ajudar você a otimizar sua busca por novos percursos e performance.
+    </p>
+  </header>
+
+  <div class="calendar-grid" style="margin-top: 0; gap: 30px;">
+    <!-- Lado Esquerdo: Canais Diretos (Estilo Dashboard) -->
+    <aside class="glass-panel" style="padding: 40px; display: flex; flex-direction: column; gap: 35px;">
+      <h2 style="font-size: 1.5rem; letter-spacing: -0.5px; margin-bottom: 5px;">Canais Diretos</h2>
+
+      <div class="contact-item">
+        <label style="font-size: 0.65rem; color: var(--primary); text-transform: uppercase; font-weight: 800; display: block; margin-bottom: 8px; letter-spacing: 1px;">E-mail Oficial</label>
+        <a href="mailto:contato@seusite.com" style="color: var(--text-main); text-decoration: none; font-size: 1.15rem; font-weight: 600; transition: all 0.3s ease; display: inline-block;">
+          contato@seusite.com
+        </a>
       </div>
-      <div>
-        <h2>O que você pode fazer</h2>
-        <ul>
-          <li>Enviar sugestões de novos recursos</li>
-          <li>Relatar erros no mapa</li>
-          <li>Pedir ajuda para melhorar a busca</li>
-        </ul>
+
+      <div class="contact-item">
+        <label style="font-size: 0.65rem; color: var(--primary); text-transform: uppercase; font-weight: 800; display: block; margin-bottom: 8px; letter-spacing: 1px;">WhatsApp Business</label>
+        <span style="color: var(--text-main); font-size: 1.15rem; font-weight: 600; display: block;">
+          +55 11 90000-0000
+        </span>
       </div>
-    </div>
-  </section>
+
+      <div style="margin-top: auto; padding-top: 25px; border-top: 1px solid var(--glass-border);">
+        <div style="display: flex; align-items: center; gap: 10px; color: var(--text-dim); font-size: 0.85rem;">
+            <span style="width: 8px; height: 8px; background: #fbbf24; border-radius: 50%;"></span>
+            Tempo de resposta médio: 24 horas.
+        </div>
+      </div>
+    </aside>
+
+    <!-- Lado Direito: Cards de Colaboração -->
+    <section class="events-list">
+      <div class="glass-panel" style="padding: 40px;">
+        <h2 style="font-size: 1.5rem; letter-spacing: -0.5px; margin-bottom: 30px;">Como podemos colaborar?</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+
+          <!-- Card de Serviço Premium -->
+          <div class="glass-panel" style="padding: 25px; margin-bottom: 0; background: rgba(255,255,255,0.01); border-color: rgba(255,255,255,0.05); transition: transform 0.3s ease;">
+            <div style="font-size: 1.8rem; margin-bottom: 15px;">💡</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; color: var(--text-main);">Sugestões</h3>
+            <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.5;">Envie novas ideias de recursos para a nossa plataforma.</p>
+          </div>
+
+          <div class="glass-panel" style="padding: 25px; margin-bottom: 0; background: rgba(255,255,255,0.01); border-color: rgba(255,255,255,0.05); transition: transform 0.3s ease;">
+            <div style="font-size: 1.8rem; margin-bottom: 15px;">🛠️</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; color: var(--text-main);">Suporte Técnico</h3>
+            <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.5;">Relate erros no mapa ou dificuldades de navegação.</p>
+          </div>
+
+          <div class="glass-panel" style="padding: 25px; margin-bottom: 0; background: rgba(255,255,255,0.01); border-color: rgba(255,255,255,0.05); transition: transform 0.3s ease;">
+            <div style="font-size: 1.8rem; margin-bottom: 15px;">🎯</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; color: var(--text-main);">Busca Refinada</h3>
+            <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.5;">Peça ajuda para encontrar locais específicos de treino.</p>
+          </div>
+
+          <div class="glass-panel" style="padding: 25px; margin-bottom: 0; background: rgba(255,255,255,0.01); border-color: rgba(255,255,255,0.05); transition: transform 0.3s ease;">
+            <div style="font-size: 1.8rem; margin-bottom: 15px;">🚀</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; color: var(--text-main);">Parcerias</h3>
+            <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.5;">Interessado em integrar seu evento ao nosso mapa?</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
 {% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | Data & Performance{% endblock %}
+
+{% block content %}
+<!-- Seção Hero: O Grande Impacto -->
+<section class="hero-home">
+  <div class="hero-overlay"></div>
+  <div class="hero-content-premium">
+    <span class="eyebrow-premium">Data Engineer & Athlete</span>
+    <h1 class="title-mega">Engineering <span class="text-gradient">Precision.</span><br>Driving Performance.</h1>
+    <p class="subtitle-premium">Transformando bilhões de registros em insights estratégicos e quilômetros em superação pessoal.</p>
+
+    <div class="hero-actions">
+      <a href="{{ url_for('calendar') }}" class="btn-primary-lg">Explorar Calendário</a>
+      <a href="#about" class="btn-outline-lg">Conhecer Trajetória</a>
+    </div>
+  </div>
+</section>
+
+<!-- Seção de Métricas: Números que Impressionam -->
+<section class="stats-grid">
+  <div class="glass-panel stat-card">
+    <span class="stat-value">+6Bi</span>
+    <span class="stat-label">Registros Processados</span>
+  </div>
+  <div class="glass-panel stat-card">
+    <span class="stat-value">AWS</span>
+    <span class="stat-label">Cloud Architecture</span>
+  </div>
+  <div class="glass-panel stat-card">
+    <span class="stat-value">21K</span>
+    <span class="stat-label">Meia Maratona</span>
+  </div>
+</section>
+
+<!-- Seção Visual: The Runner's High (Imersão) -->
+<section class="visual-experience">
+  <div class="parallax-bg">
+    <div class="overlay-gradient"></div>
+    <div class="experience-content">
+      <h2 class="title-premium">The <span class="text-gradient">Flow</span> State</h2>
+      <p>Onde o código termina e a jornada começa. A análise de dados prevê o limite, a mente o supera.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Seção: Gear & Tech (Lifestyle Profissional) -->
+<section class="gear-section">
+  <div class="section-header">
+    <span class="eyebrow-premium">The Arsenal</span>
+    <h2 class="title-premium">Tools of the <span class="text-gradient">Trade</span></h2>
+  </div>
+
+  <div class="gear-grid">
+    <div class="glass-panel gear-card">
+      <div class="gear-icon">⌚</div>
+      <h3>Apple Watch Ultra</h3>
+      <p>Monitoramento biométrico em tempo real para ajustes finos de carga.</p>
+    </div>
+    <div class="glass-panel gear-card">
+      <div class="gear-icon">☁️</div>
+      <h3>AWS Cloud</h3>
+      <p>Arquitetura resiliente para processar 6 bilhões de registros com eficiência.</p>
+    </div>
+    <div class="glass-panel gear-card">
+      <div class="gear-icon">👟</div>
+      <h3>Carbon Plated Tech</h3>
+      <p>Máxima economia de energia para ritmos abaixo de 4:00 min/km.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Seção: Call to Action Final -->
+<section class="final-cta">
+  <div class="glass-panel cta-box">
+    <h2>Pronto para o próximo split?</h2>
+    <p>Vamos construir algo sólido ou correr algo épico.</p>
+    <a href="{{ url_for('contact') }}" class="btn-primary-lg">Iniciar Conexão</a>
+  </div>
+</section>
+
+<!-- Seção de Destaque: O Próximo Desafio -->
+<section class="next-event-section" id="about">
+  <div class="glass-panel challenge-box">
+    <div class="challenge-text">
+      <span class="eyebrow-premium" style="color: var(--secondary);">Próximo Grande Alvo</span>
+      <h2>Maratona de São Paulo 2026</h2>
+      <p>A preparação técnica encontra a disciplina física. Acompanhe a jornada rumo aos 42km.</p>
+    </div>
+    <div class="challenge-visual">
+       <div class="progress-ring">
+         <span class="progress-number">42</span>
+         <span class="progress-unit">KM</span>
+       </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

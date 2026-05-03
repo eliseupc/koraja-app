@@ -3,23 +3,56 @@
 {% block title %}Sobre | Mapa de Corrida{% endblock %}
 
 {% block content %}
-  <section class="page-section page-card">
-    <h1>Sobre o site</h1>
-    <p>Este site ajuda você a encontrar os melhores lugares para correr usando uma busca inteligente com integração ao OpenStreetMap.</p>
-    <p>Pesquise parques, trilhas, pistas e locais de corrida por cidade ou bairro, e veja os resultados diretamente em um mapa interativo.</p>
-    <div class="feature-grid">
-      <div class="feature-item">
-        <h2>Busca rápida</h2>
-        <p>Use termos como "parque", "pista de corrida" e o nome da cidade para achar lugares próximos.</p>
+  <!-- Header de Impacto com Tipografia Premium -->
+  <header class="about-header" style="text-align: center; padding: 60px 0 40px;">
+    <span class="eyebrow-premium">Data Driven Performance</span>
+    <h1 class="title-premium">Nossa <span class="text-gradient">Missão</span></h1>
+    <p style="color: var(--text-dim); max-width: 700px; margin: 20px auto; font-size: 1.15rem; line-height: 1.6;">
+      Unindo engenharia de dados e paixão pelo esporte para mapear o seu próximo recorde pessoal.
+    </p>
+  </header>
+
+  <!-- Painel Principal em Glassmorphism -->
+  <section class="glass-panel" style="padding: 60px 40px; border-radius: var(--radius-lg);">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center; margin-bottom: 60px;">
+      <h2 style="font-size: 2rem; margin-bottom: 24px; color: var(--text-main); letter-spacing: -0.5px;">Por que o Mapa de Corrida?</h2>
+      <p style="color: var(--text-dim); font-size: 1.1rem; line-height: 1.8;">
+        Acreditamos que todo atleta merece encontrar o terreno perfeito[cite: 3]. O Mapa de Corrida utiliza inteligência geoespacial e integração com o OpenStreetMap para entregar resultados precisos, seja você um maratonista de asfalto ou um entusiasta de trilhas[cite: 3, 4].
+      </p>
+    </div>
+
+    <!-- Grid de Pilares Premium -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+
+      <!-- Pilar 1: Inteligência -->
+      <div class="glass-panel" style="padding: 40px; margin-bottom: 0; background: rgba(255,255,255,0.01); transition: transform 0.3s ease; border-color: rgba(255,255,255,0.05);">
+        <div style="background: var(--primary); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; color: white; font-weight: 800; font-size: 0.9rem; box-shadow: 0 10px 20px rgba(34, 177, 127, 0.2);">01</div>
+        <h3 style="margin-bottom: 15px; color: var(--text-main); font-size: 1.25rem;">Busca Inteligente</h3>
+        <p style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.7;">Algoritmos otimizados para identificar parques, pistas e trilhas com base em termos técnicos e localização precisa[cite: 3].</p>
       </div>
-      <div class="feature-item">
-        <h2>Mapa interativo</h2>
-        <p>Os resultados aparecem com marcadores no mapa, permitindo que você navegue e explore cada local.</p>
+
+      <!-- Pilar 2: Visualização -->
+      <div class="glass-panel" style="padding: 40px; margin-bottom: 0; background: rgba(255,255,255,0.01); transition: transform 0.3s ease; border-color: rgba(255,255,255,0.05);">
+        <div style="background: var(--primary); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; color: white; font-weight: 800; font-size: 0.9rem; box-shadow: 0 10px 20px rgba(34, 177, 127, 0.2);">02</div>
+        <h3 style="margin-bottom: 15px; color: var(--text-main); font-size: 1.25rem;">Visualização Avançada</h3>
+        <p style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.7;">Mapa interativo com renderização fluida, permitindo a exploração detalhada de cada ponto de interesse antes de sair de casa[cite: 3].</p>
       </div>
-      <div class="feature-item">
-        <h2>Design leve</h2>
-        <p>Um tema verde e branco moderno para dar clareza ao conteúdo e facilitar a navegação.</p>
+
+      <!-- Pilar 3: UX -->
+      <div class="glass-panel" style="padding: 40px; margin-bottom: 0; background: rgba(255,255,255,0.01); transition: transform 0.3s ease; border-color: rgba(255,255,255,0.05);">
+        <div style="background: var(--primary); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; color: white; font-weight: 800; font-size: 0.9rem; box-shadow: 0 10px 20px rgba(34, 177, 127, 0.2);">03</div>
+        <h3 style="margin-bottom: 15px; color: var(--text-main); font-size: 1.25rem;">Design Premium</h3>
+        <p style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.7;">Interface moderna, minimalista e adaptativa, desenvolvida para proporcionar clareza em qualquer dispositivo[cite: 4].</p>
       </div>
+
+    </div>
+
+    <!-- Call to Action (CTA) -->
+    <div style="margin-top: 80px; text-align: center; padding-top: 50px; border-top: 1px solid var(--glass-border);">
+      <p style="color: var(--text-dim); margin-bottom: 25px; font-weight: 500;">Pronto para encontrar seu próximo desafio?</p>
+      <a href="{{ url_for('index') }}" class="btn-filter" style="text-decoration: none; display: inline-block; width: auto; padding: 16px 40px; font-size: 0.9rem; letter-spacing: 1px;">
+        COMEÇAR EXPLORAÇÃO
+      </a>
     </div>
   </section>
 {% endblock %}

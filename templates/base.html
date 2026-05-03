@@ -4,57 +4,115 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Mapa de Corrida{% endblock %}</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-oX0YH7gDxw2T0r3M6X8qXmfjT6tYKxwFv57/2MykPz0=" crossorigin=""/>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Seu CSS Centralizado -->
     <link rel="stylesheet" href="/static/style.css">
   </head>
   <body>
     <div class="page-shell">
-      <header class="site-header">
+
+      <header class="site-header glass-panel">
         <a class="brand-logo" href="{{ url_for('index') }}">
-          <span class="brand-mark">🏃</span>
-          <div>
+          <div class="brand-mark">🏃</div>
+          <div class="brand-info">
             <strong>Mapa de Corrida</strong>
-            <span>Rota, ritmo e descoberta</span>
+            <span>Performance & Discovery</span>
           </div>
         </a>
 
         <div class="header-actions">
-          <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="siteNav" type="button">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <nav class="site-nav" id="siteNav">
-            <a class="nav-link" href="{{ url_for('index') }}">Início</a>
-            <a class="nav-link" href="{{ url_for('about') }}">Sobre</a>
-            <a class="nav-link" href="{{ url_for('contact') }}">Contato</a>
+          <nav class="site-nav">
+            <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" href="{{ url_for('index') }}">Explorar</a>
+            <a class="nav-link {% if request.endpoint == 'calendar' %}active{% endif %}" href="{{ url_for('calendar') }}">Calendário</a>
+            <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}">Sobre</a>
+            <a class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}" href="{{ url_for('contact') }}">Contato</a>
           </nav>
-          <a class="cta-button" href="{{ url_for('contact') }}">Solicitar rota</a>
+
+          <button id="theme-toggle" class="theme-btn">
+            <span id="theme-icon">🌙</span>
+          </button>
         </div>
       </header>
 
-      <main class="page-content">
+      <main class="main-layout">
         {% block content %}{% endblock %}
       </main>
 
-      <footer class="site-footer">
-        <p>Mapa de Corrida — criador: Eliseu Corrêa</p>
+      <footer class="site-footer-main glass-panel">
+        <div class="footer-container">
+          <div class="footer-grid">
+
+            <div class="footer-column brand-col">
+              <div class="footer-logo">
+                <div class="mark-mini">M</div>
+                <span>Mapa de Corrida</span>
+              </div>
+              <p class="footer-text">
+                Elevando a performance de atletas através de inteligência geoespacial e dados precisos.
+              </p>
+            </div>
+
+            <div class="footer-column">
+              <h4>Plataforma</h4>
+              <nav class="footer-nav">
+                <a href="{{ url_for('index') }}">Explorar Mapa</a>
+                <a href="{{ url_for('calendar') }}">Calendário</a>
+                <a href="#">Treinos Pro</a>
+              </nav>
+            </div>
+
+            <div class="footer-column">
+              <h4>Institucional</h4>
+              <nav class="footer-nav">
+                <a href="{{ url_for('about') }}">Sobre Nós</a>
+                <a href="{{ url_for('contact') }}">Contato</a>
+                <a href="#">Privacidade</a>
+              </nav>
+            </div>
+
+            <div class="footer-column">
+              <h4>Conectar</h4>
+              <div class="social-group">
+                <a href="#" class="social-icon">IG</a>
+                <a href="#" class="social-icon">ST</a>
+                <a href="#" class="social-icon">YT</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p>&copy; 2026 Mapa de Corrida. Crafted for High Performance.</p>
+            <div class="footer-meta">
+              <span class="version">v2.1.4</span>
+              <span class="status-badge-mini">ESTÁVEL</span>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-oC0B/Boj9pQpDOBh9z2ZZV+6A8Vuf3m9elQdURy+g/A=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const toggle = document.querySelector('.mobile-menu-toggle');
-        const header = document.querySelector('.site-header');
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const body = document.body;
 
-        if (toggle && header) {
-          toggle.addEventListener('click', () => {
-            const expanded = toggle.getAttribute('aria-expanded') === 'true';
-            toggle.setAttribute('aria-expanded', String(!expanded));
-            header.classList.toggle('nav-open');
-          });
-        }
+      if (localStorage.getItem('theme') === 'light') {
+        body.classList.add('light-mode');
+        themeIcon.textContent = '☀️';
+      }
+
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        const isLight = body.classList.contains('light-mode');
+        themeIcon.textContent = isLight ? '☀️' : '🌙';
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
       });
     </script>
     {% block scripts %}{% endblock %}

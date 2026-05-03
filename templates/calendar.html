@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Calendário de Corridas 2026{% endblock %}
+
+{% block content %}
+<div class="main-layout">
+  <header class="hero-section">
+    <span class="eyebrow-premium">Programação 2026</span>
+    <h1 class="title-premium">Calendário de <span class="text-gradient">Corridas</span></h1>
+
+    <!-- Banner de Destaque -->
+    <div class="glass-panel featured-item">
+      <div class="featured-content">
+        <div class="status-badge">
+          <span class="dot"></span> Inscrições Abertas
+        </div>
+        <div class="featured-info">
+          <h3>Maratona de São Paulo</h3>
+          <div class="featured-meta">
+            <span>📅 12 de Outubro</span>
+            <span>📍 Ibirapuera, SP</span>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="btn-primary-sm">Garantir Vaga</a>
+    </div>
+  </header>
+
+  <div class="calendar-grid">
+    <!-- Sidebar de Filtros -->
+    <aside class="glass-panel filter-sidebar" style="padding: 30px;">
+      <h3>Refinar Busca</h3>
+      <form action="{{ url_for('calendar') }}" method="get">
+        <div class="filter-group">
+          <label>Distância</label>
+          <select name="distance">
+            <option value="all">Todas as distâncias</option>
+            <option value="5k">5 km</option>
+            <option value="10k">10 km</option>
+            <option value="21k">Meia Maratona (21k)</option>
+            <option value="42k">Maratona (42k)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-filter">Aplicar Filtros</button>
+      </form>
+    </aside>
+
+    <!-- Lista de Eventos -->
+    <section class="race-list">
+      <div class="glass-panel race-card">
+        <div class="race-main-info">
+          <div class="race-date">
+            <b>15</b>
+            <span>MAI</span>
+          </div>
+          <div class="race-details">
+            <h3>Meia Maratona de Campinas</h3>
+            <p>Taquaral, SP • Asfalto • 21km</p>
+          </div>
+        </div>
+        <a href="#" class="btn-view">Ver Detalhes</a>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

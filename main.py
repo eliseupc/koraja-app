@@ -42,6 +42,34 @@ def about():
 def contact():
     return render_template('contact.html')
 
+@app.route('/calendar')
+def calendar():
+    # Exemplo de dados que poderiam vir de um banco de dados ou CSV
+    races = [
+        {
+            "name": "Maratona Internacional de SP",
+            "date": "12 JUL",
+            "location": "Ibirapuera, São Paulo - SP",
+            "tags": ["Asfalto", "42k"],
+            "highlight": True
+        }
+    ]
+    return render_template('calendar.html', races=races)
+
+@app.route('/home')
+def home():
+    # Exemplo de dados que poderiam vir de um banco de dados ou CSV
+    races = [
+        {
+            "name": "Maratona Internacional de SP",
+            "date": "12 JUL",
+            "location": "Ibirapuera, São Paulo - SP",
+            "tags": ["Asfalto", "42k"],
+            "highlight": True
+        }
+    ]
+    return render_template('index2.html', races=races)
+
 
 def build_search_queries(query, location, filter_type='all'):
     filters = FILTER_TERMS.get(filter_type, FILTER_TERMS['all'])

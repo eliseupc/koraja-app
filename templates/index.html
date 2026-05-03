@@ -1,178 +1,51 @@
 {% extends 'base.html' %}
 
-{% block title %}Início | Mapa de Corrida{% endblock %}
+{% block title %}Explorar | Mapa de Corrida{% endblock %}
 
 {% block content %}
-  <section class="page-section hero-section">
-    <div class="hero-columns">
-      <div class="hero-copy">
-        <p class="eyebrow">Corrida & aventura</p>
-        <h1>Descubra os melhores lugares para correr</h1>
-        <p class="hero-text">Encontre parques, trilhas e pistas de corrida com mapa interativo. Pesquise por cidade, bairro ou tipo de local e acompanhe os resultados em tempo real.</p>
-      </div>
-      <div class="hero-card">
-        <h2>Buscar local de corrida</h2>
-        <p>Encontre locais com filtros, ordenação e páginação integrada.</p>
-        <form id="searchForm" class="search-panel" action="{{ url_for('search') }}" method="get">
-          <div class="search-row">
-            <label class="field">
-              <span>Termo de pesquisa</span>
-              <input id="query" name="query" type="text" placeholder="Ex: parque, pista de corrida" value="{{ query or '' }}" />
-            </label>
-            <label class="field">
-              <span>Localidade</span>
-              <input id="location" name="location" type="text" placeholder="Ex: Campinas, São Paulo" value="{{ location or '' }}" />
-            </label>
+  <!-- Seção Hero -->
+  <section class="hero-premium" style="text-align: center; padding: 40px 0 20px;">
+    <span class="eyebrow" style="color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 0.7rem;">Gear up for 2026</span>
+    <h1 style="font-size: 2.8rem; margin: 10px 0;">Seu próximo RP começa <span style="color: var(--primary);">aqui.</span></h1>
+    <p style="color: var(--text-dim); max-width: 600px; margin: 0 auto 30px;">Busca geoespacial inteligente para atletas que não aceitam rotas comuns.</p>
+
+    <!-- Formulário de Busca Premium unificado -->
+    <div class="search-container" style="max-width: 900px; margin: 0 auto;">
+        <form class="glass-panel search-grid" action="{{ url_for('search') }}" method="get"
+              style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 15px; align-items: end; text-align: left; padding: 25px;">
+
+          <div class="search-field">
+            <label style="font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 8px;">Atividade</label>
+            <input name="query" type="text" placeholder="Ex: Pista de Atletismo" value="{{ query or '' }}"
+                   style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 12px; padding: 12px; color: var(--text-main); outline: none;">
           </div>
 
-          <div class="search-row">
-            <label class="field">
-              <span>Tipo de local</span>
-              <select name="filter_type">
-                <option value="all" {% if filter_type == 'all' %}selected{% endif %}>Todos</option>
-                <option value="parque" {% if filter_type == 'parque' %}selected{% endif %}>Parque</option>
-                <option value="pista" {% if filter_type == 'pista' %}selected{% endif %}>Pista</option>
-                <option value="trilha" {% if filter_type == 'trilha' %}selected{% endif %}>Trilha</option>
-                <option value="verde" {% if filter_type == 'verde' %}selected{% endif %}>Área verde</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Ordenar por</span>
-              <select name="sort_by">
-                <option value="relevance" {% if sort_by == 'relevance' %}selected{% endif %}>Relevância</option>
-                <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Nome</option>
-              </select>
-            </label>
+          <div class="search-field">
+            <label style="font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 8px;">Localização</label>
+            <input name="location" type="text" placeholder="Cidade ou Bairro" value="{{ location or '' }}"
+                   style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 12px; padding: 12px; color: var(--text-main); outline: none;">
           </div>
 
-          <button type="submit">Buscar agora</button>
+          <div class="search-field">
+            <label style="font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 8px;">Tipo</label>
+            <select name="filter_type" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 12px; padding: 12px; color: var(--text-main); outline: none;">
+              <option value="all">Todos os terrenos</option>
+              <option value="parque">Parques</option>
+              <option value="pista">Pistas</option>
+            </select>
+          </div>
+
+          <button type="submit" style="background: var(--primary); border: none; border-radius: 12px; width: 48px; height: 46px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; transition: transform 0.2s;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
         </form>
-        <div id="message" class="message">{{ search_message }}</div>
-      </div>
     </div>
   </section>
 
-  <section class="page-section results-map">
-    <div class="results-column">
-      <div class="results-panel">
-        {% if results_count is none %}
-          <p class="intro-text">Use o formulário para encontrar lugares ideais para correr na sua cidade.</p>
-        {% elif results_count == 0 %}
-          <p class="error-text">{{ search_message }}</p>
-        {% else %}
-          <div class="results-summary">
-            <strong>{{ results_count }}</strong> locais encontrados. Mostrando {{ places|length }} locais na página {{ page }} de {{ total_pages }}.
-          </div>
-          <div class="results-list">
-            {% for place in places %}
-              <article class="place-item">
-                <div class="place-head">
-                  <span class="place-index">{{ loop.index + (page - 1) * 10 }}</span>
-                  <h3>{{ place.name }}</h3>
-                </div>
-                <p class="place-meta">Categoria: {{ place.category or 'desconhecido' }} • Tipo: {{ place.type or 'n/a' }}</p>
-                {% if place.address.city or place.address.state %}
-                  <p class="place-location">{{ place.address.city or '' }} {{ place.address.state or '' }}</p>
-                {% endif %}
-              </article>
-            {% endfor %}
-          </div>
-          {% if total_pages > 1 %}
-            <div class="pagination">
-              {% if page > 1 %}
-                <a class="page-link" href="{{ url_for('search', query=query, location=location, filter_type=filter_type, sort_by=sort_by, page=page-1) }}">Anterior</a>
-              {% else %}
-                <span class="page-link disabled">Anterior</span>
-              {% endif %}
-              <span class="page-info">Página {{ page }} de {{ total_pages }}</span>
-              {% if page < total_pages %}
-                <a class="page-link" href="{{ url_for('search', query=query, location=location, filter_type=filter_type, sort_by=sort_by, page=page+1) }}">Próxima</a>
-              {% else %}
-                <span class="page-link disabled">Próxima</span>
-              {% endif %}
-            </div>
-          {% endif %}
-        {% endif %}
-      </div>
+  <!-- Container do Mapa Centralizado -->
+  <div style="margin-top: 20px;">
+    <div id="map" class="glass-panel" style="height: 500px; width: 100%; padding: 10px; border-radius: var(--radius-lg);">
+        <!-- O Leaflet renderiza aqui -->
     </div>
-    <div id="map" class="map"></div>
-  </section>
-{% endblock %}
-
-{% block scripts %}
-<script>
-  // Aguarda DOM estar pronto é o Leaflet estar carregado
-  document.addEventListener('DOMContentLoaded', function() {
-    const mapContainer = document.getElementById('map');
-    
-    if (!mapContainer) {
-      console.error('Map container not found');
-      return;
-    }
-
-    // Inicializa o mapa
-    const map = L.map('map').setView([-15.7801, -47.9292], 4);
-    
-    // Adiciona tile layer
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors',
-      maxZoom: 19,
-      detectRetina: true,
-    }).addTo(map);
-
-    const places = {{ places_json | default('[]') | safe }};
-    const markersGroup = L.layerGroup().addTo(map);
-    const bounds = [];
-
-    function createMarker(place) {
-      const marker = L.marker([parseFloat(place.lat), parseFloat(place.lon)]);
-      marker.bindPopup(`
-        <div style="max-width: 240px;">
-          <strong>${place.name}</strong><br>
-          <small>${place.category || ''} ${place.type || ''}</small><br>
-          <small>${place.address.city || ''} ${place.address.state || ''}</small>
-        </div>
-      `);
-      marker.addTo(markersGroup);
-      return marker;
-    }
-
-    function showPlaceOnMap(marker) {
-      map.setView(marker.getLatLng(), 15, { animate: true });
-      marker.openPopup();
-    }
-
-    if (places && places.length) {
-      const placeMarkers = places.map((place) => {
-        const marker = createMarker(place);
-        bounds.push(marker.getLatLng());
-        return marker;
-      });
-
-      if (bounds.length > 1) {
-        map.fitBounds(bounds, { padding: [48, 48] });
-      } else if (bounds.length === 1) {
-        map.setView(bounds[0], 12);
-      }
-
-      const items = document.querySelectorAll('.place-item');
-      items.forEach((item, index) => {
-        item.addEventListener('click', () => {
-          if (placeMarkers[index]) {
-            showPlaceOnMap(placeMarkers[index]);
-            item.classList.add('active-place');
-          }
-        });
-      });
-    }
-
-    setTimeout(() => {
-      map.invalidateSize(true);
-    }, 250);
-
-    window.addEventListener('resize', () => {
-      map.invalidateSize(true);
-    });
-  });
-</script>
+  </div>
 {% endblock %}
