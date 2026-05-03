@@ -38,13 +38,13 @@ Além disso, a plataforma evolui para recomendações inteligentes baseadas em d
 
 ```mermaid
 graph LR
-  FE[Frontend\nReact / Next.js] --> API[API Gateway]
-  API --> BE[Backend\nFastAPI / AWS Lambda]
-  BE --> DB[PostgreSQL + PostGIS]
-  BE --> S3[S3\n(Data Lake)]
-  S3 --> ETL[AWS Glue / Spark\n(ETL)]
-  ETL --> CUR[Camada de\nDados Curados]
-  CUR --> RECO[Recomendações /\nAnalytics]
+  FE["Frontend<br/>React / Next.js"] --> API["API Gateway"]
+  API --> BE["Backend<br/>FastAPI / AWS Lambda"]
+  BE --> DB["PostgreSQL + PostGIS"]
+  BE --> S3["S3<br/>(Data Lake)"]
+  S3 --> ETL["AWS Glue / Spark<br/>(ETL)"]
+  ETL --> CUR["Camada de<br/>Dados Curados"]
+  CUR --> RECO["Recomendações<br/>Analytics"]
   DB --> RECO
 ```
 
