@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Mapa de Corrida{% endblock %}</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-oX0YH7gDxw2T0r3M6X8qXmfjT6tYKxwFv57/2MykPz0=" crossorigin=""/>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand-logo" href="{{ url_for('index') }}">
+          <span class="brand-mark">🏃</span>
+          <div>
+            <strong>Mapa de Corrida</strong>
+            <span>Rota, ritmo e descoberta</span>
+          </div>
+        </a>
+
+        <div class="header-actions">
+          <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="siteNav" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav class="site-nav" id="siteNav">
+            <a class="nav-link" href="{{ url_for('index') }}">Início</a>
+            <a class="nav-link" href="{{ url_for('about') }}">Sobre</a>
+            <a class="nav-link" href="{{ url_for('contact') }}">Contato</a>
+          </nav>
+          <a class="cta-button" href="{{ url_for('contact') }}">Solicitar rota</a>
+        </div>
+      </header>
+
+      <main class="page-content">
+        {% block content %}{% endblock %}
+      </main>
+
+      <footer class="site-footer">
+        <p>Mapa de Corrida — criador: Eliseu Corrêa</p>
+      </footer>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-oC0B/Boj9pQpDOBh9z2ZZV+6A8Vuf3m9elQdURy+g/A=" crossorigin=""></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        const header = document.querySelector('.site-header');
+
+        if (toggle && header) {
+          toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!expanded));
+            header.classList.toggle('nav-open');
+          });
+        }
+      });
+    </script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>
